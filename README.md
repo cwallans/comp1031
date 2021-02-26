@@ -18,7 +18,7 @@ This query:
     where p1.name = 'Lawrence, Jennifer (III)'
     and p2.name <> 'Lawrence, Jennifer (III)'
     return count(*) as total ;
-    returns a total of 331, while this query:
+returns a total of 331, while this query:
 
     match (p1:Person)-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(p2:Person)
     where p1.name = 'Lawrence, Jennifer (III)'
