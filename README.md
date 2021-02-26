@@ -13,25 +13,25 @@ Please use the Cypher query language to solve each of the following exercises.
 Exercise 1:
 
 This query:
-match (p1:Person)-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(p2:Person)
-where p1.name = 'Lawrence, Jennifer (III)'
-  and p2.name <> 'Lawrence, Jennifer (III)'
-return count(*) as total ;
 
-returns a total of 331, while this query: 
+    match (p1:Person)-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(p2:Person)
+    where p1.name = 'Lawrence, Jennifer (III)'
+    and p2.name <> 'Lawrence, Jennifer (III)'
+    return count(*) as total ;
+    returns a total of 331, while this query:
 
-match (p1:Person)-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(p2:Person)
-where p1.name = 'Lawrence, Jennifer (III)'
-  and p2.name <> 'Lawrence, Jennifer (III)'
-return count(distinct p2) as total ;
+    match (p1:Person)-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(p2:Person)
+    where p1.name = 'Lawrence, Jennifer (III)'
+    and p2.name <> 'Lawrence, Jennifer (III)'
+    return count(distinct p2) as total ;
 
 returns a total of 321. That is because some co-stars are counted twice in the first query and only once (correctly) in the second query. Who are the co-stars counted multiple times and how many movies did they act in with Jennifer Lawrence? Let's use Cypher to find out!
 
 Complete the following Cypher query so that it returns rows name, total where the name column is the name of an actor, and the total column indicates the number of movies in which they co-starred with Jennifer Lawrence. Note, here we want the total to always be greater than 1. (HINT: Consider using the WITH construct.)
 
-   YOUR-CODE-GOES-HERE
-   return name, total
-   order by name, total;
+    YOUR-CODE-GOES-HERE
+    return name, total
+    order by name, total;
    
    
 Exercise 2:
@@ -42,11 +42,11 @@ For this exercise we will compute the distance between all of our genres. The de
 
 We will use the HAS_GENRE relationship rather than the ACTS_IN relationship. Your query should output the distance between every genre and every other genre that exists in the database. Make sure your query enforces the constraint g1.genre < g2.genre so that each pair of genres is only listed once (if you swap the order of the two genres, the distance is still the same).
 
-  match (g:Genre)
-   with g.genre as genre1
+    match (g:Genre)
+    with g.genre as genre1
       YOUR-CODE-GOES-HERE
-   return distinct genre1, g2.genre as genre2, length(path)/2 as length
-   order by length desc, genre1, genre2;
+    return distinct genre1, g2.genre as genre2, length(path)/2 as length
+    order by length desc, genre1, genre2;
 
 
 Exercise 3:
